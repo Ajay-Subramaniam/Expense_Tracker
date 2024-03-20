@@ -63,3 +63,9 @@
   .new-expense button.alternative:active {
     background-color: #ddb3f8;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+ }

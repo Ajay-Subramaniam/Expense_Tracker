@@ -19,6 +19,12 @@ const ExpenseForm=(props)=>{
     const  handleDateChange=(event)=>{
       setDate(event.target.value);
     }
+
+    const clearInput=()=>{
+      setTittle("")
+      setAmount("")
+      setDate("")
+    }
     
     const handleSubmit=(event)=>{
         event.preventDefault();
@@ -34,10 +40,8 @@ const ExpenseForm=(props)=>{
             amount:amount,
             date:date
           };
-         props.addExpense(obj);
-         setTittle("")
-         setAmount("")
-         setDate("")
+          props.addExpense(obj);
+          clearInput()
         }
       }
 
@@ -51,7 +55,7 @@ const ExpenseForm=(props)=>{
               </div>
               <div className='new-expense__control'>
                   <label>Amount</label>
-                  <input type='text' value={amount} onChange={handleAmountChange}/>
+                  <input type='number' value={amount} onChange={handleAmountChange}/>
               </div>
               <div className='new-expense__control'>
                   <label>Date</label>
@@ -59,7 +63,7 @@ const ExpenseForm=(props)=>{
               </div>
           </div>
           <div className='new-expense__actions'>
-            <button className='targetButton' type='reset'>Cancel</button>
+            <button className='targetButton' type='reset' onClick={clearInput}>Cancel</button>
             <button className='targetButton' type='submit'> Add Expense</button>
           </div>
         </form>
