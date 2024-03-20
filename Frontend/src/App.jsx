@@ -10,7 +10,7 @@ function App(){
   useEffect(() => {
     const retrieveExpense = async () => {
       try {
-        const data = await fetch('https://expenseTracker-api.onrender.com/retrieve');
+        const data = await fetch('https://expensetracker-api-t0mw.onrender.com/retrieve');
         const expenses = await data.json();
         setExpenselist(expenses);
       } catch (error) {
@@ -23,7 +23,7 @@ function App(){
 
 
   const addExpense=async(newObj)=>{
-      await fetch('https://expenseTracker-api.onrender.com/create',{
+      await fetch('https://expensetracker-api-t0mw.onrender.com/create',{
         method:"POST",
         headers:{
           'Content-Type':"application/json"
