@@ -2,6 +2,7 @@ import './App.css'
 import Expenses from './component/expenses/Expenses'
 import ExpenseForm from './component/expense_form/ExpenseForm'
 import {useState,useEffect} from 'react'
+let url="https://expensetracker-api-t0mw.onrender.com"
 
 function App(){
 
