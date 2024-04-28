@@ -2,15 +2,20 @@ import './App.css'
 import Expenses from './component/expenses/Expenses'
 import ExpenseForm from './component/expense_form/ExpenseForm'
 import {useState,useEffect} from 'react'
-import { nanoid } from 'nanoid'
 
 function App(){
-  const [expenselist,setExpenselist]=useState([]);
 
+  const [expenselist,setExpenselist]=useState([]);
+  const [title,setTitle]=useState('')
+  const [amount,setAmount]=useState('')
+  const [date,setDate]=useState('')
+
+  let stateObj = {title,amount,date}
+  let stateSetObj = {setTitle,setAmount,setDate}
   useEffect(() => {
     const retrieveExpense = async () => {
       try {
-        const data = await fetch('https://expensetracker-api-t0mw.onrender.com/retrieve');
+        const data = await fetch(url+'/retrieve');
         const expenses = await data.json();
         setExpenselist(expenses);
       } catch (error) {
@@ -23,7 +28,7 @@ function App(){
 
 
   const addExpense=async(newObj)=>{
-      await fetch('https://expensetracker-api-t0mw.onrender.com/create',{
+      await fetch(url+'/create',{
         method:"POST",
         headers:{
           'Content-Type':"application/json"
@@ -36,8 +41,8 @@ function App(){
 
   return(
     <>
-      <ExpenseForm addExpense={addExpense}/>
-      <Expenses expenselist={expenselist}/>
+      <ExpenseForm addExpense={addExpense} stateObj={stateObj} stateSetObj={stateSetObj}/>
+      <Expenses expenselist={expenselist} setExpenselist={setExpenselist} stateSetObj={stateSetObj}/>
     </>
   )
 }

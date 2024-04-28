@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const router=require('./router/route.js');
-const bodyParser = require('body-parser');
 require('dotenv').config()
 const app=express();
 
@@ -12,8 +11,7 @@ const options = {
     method : ["GET", "POST", "PUT", "PATCH", "DELETE"]
 }
 app.use(cors(options))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.json())
 app.use(router)
 
 mongoose.connect(process.env.MONGO_STRING)

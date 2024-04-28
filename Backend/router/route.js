@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/create',createExpense);
 router.get('/retrieve',retrieveExpense);
+router.delete('/delete',deleteExpense);
 
 
 async function retrieveExpense(req, res) {
@@ -18,6 +19,17 @@ async function retrieveExpense(req, res) {
     }
 }
 
+async function deleteExpense(req,res){
+    try {
+        // console.log(req)
+        const id=req.body._id
+        await Expense.deleteOne({_id:id});
+        res.json({msg:"Successfully deleted"});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 
 async function createExpense(req,res){
     try {

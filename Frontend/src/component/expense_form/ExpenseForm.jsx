@@ -1,17 +1,15 @@
 import './ExpenseForm.css'
 import {useEffect, useState} from 'react'
-import { nanoid } from 'nanoid'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 const ExpenseForm=(props)=>{
-
-    const [title,setTittle]=useState('')
-    const [amount,setAmount]=useState('')
-    const [date,setDate]=useState('')
+    // console.log(props)
+    const {title,amount,date}=props.stateObj
+    const {setTitle,setAmount,setDate}=props.stateSetObj
 
     const  handleTitleChange=(event)=>{
-      setTittle(event.target.value);
+      setTitle(event.target.value);
     }
     const  handleAmountChange=(event)=>{
       setAmount(event.target.value);
@@ -21,7 +19,7 @@ const ExpenseForm=(props)=>{
     }
 
     const clearInput=()=>{
-      setTittle("")
+      setTitle("")
       setAmount("")
       setDate("")
     }
