@@ -2,7 +2,7 @@ import './App.css'
 import Expenses from './component/expenses/Expenses'
 import ExpenseForm from './component/expense_form/ExpenseForm'
 import {useState,useEffect} from 'react'
-let url="https://expensetracker-api-t0mw.onrender.com"
+const {VITE_URL} = import.meta.env
 
 function App(){
 
@@ -16,7 +16,7 @@ function App(){
   useEffect(() => {
     const retrieveExpense = async () => {
       try {
-        const data = await fetch(url+'/retrieve');
+        const data = await fetch(VITE_URL+'/retrieve');
         const expenses = await data.json();
         setExpenselist(expenses);
       } catch (error) {
@@ -29,7 +29,7 @@ function App(){
 
 
   const addExpense=async(newObj)=>{
-      await fetch(url+'/create',{
+      await fetch(VITE_URL+'/create',{
         method:"POST",
         headers:{
           'Content-Type':"application/json"

@@ -1,7 +1,7 @@
 import ExpenseDate from '../expense_date/ExpenseDate';
 import './ExpenseItem.css'
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-let url="https://expensetracker-api-t0mw.onrender.com"
+const {VITE_URL} = import.meta.env
 
 const ExpenseItem = (props) =>{
     const {expenselist,setExpenselist,stateSetObj} = props
@@ -17,7 +17,7 @@ const ExpenseItem = (props) =>{
 
     const deleteItem = async ()=>{
         setExpenselist(expenselist.filter((item)=>item._id!=_id))
-        await fetch(url+'/delete',{
+        await fetch(VITE_URL+'/delete',{
             method:"DELETE",
             headers:{
               'Content-Type':"application/json"
